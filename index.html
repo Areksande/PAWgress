@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+<html lang="fil">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="PAWgress — Ang kaibigang alaga para sa malusog na bata. Libreng kids health app para sa edad 5–9. I-download na ngayon!" />
+<meta name="theme-color" content="#4CAF70" />
+<meta property="og:title" content="PAWgress — Healthy Habits, Happy Kids" />
+<meta property="og:description" content="Alagaan ang iyong virtual pet habang bumubuo ng malusog na gawi. I-download nang libre." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="app_icon.png" />
+<title>PAWgress — Alagaan ang Alaga, Alagaan ang Sarili</title>
+
+<link rel="icon" type="image/png" href="app_icon.png" />
+<link rel="apple-touch-icon" href="app_icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+
+<style>
+  /* ============================
+     RESET & BASE
+     ============================ */
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  :root {
+    --green-50:  #E8F5E9;
+    --green-100: #C8E6C9;
+    --green-200: #A5D6A7;
+    --green-400: #66BB6A;
+    --green-500: #4CAF70;
+    --green-600: #2E8B4E;
+    --green-700: #1B5E20;
+    --brown-100: #EFEBE9;
+    --brown-300: #BCAAA4;
+    --brown-500: #8B6F47;
+    --brown-700: #4E342E;
+    --amber-100: #FFF3E0;
+    --amber-300: #FFD54F;
+    --amber-500: #FF9800;
+    --amber-700: #E65100;
+    --purple-100: #F3E5F5;
+    --purple-500: #9C27B0;
+    --blue-100: #E3F2FD;
+    --blue-500: #2196F3;
+    --gray-50:   #FAFAFA;
+    --gray-100:  #F5F5F5;
+    --gray-300:  #E0E0E0;
+    --gray-500:  #9E9E9E;
+    --gray-700:  #424242;
+    --gray-900:  #1A1A1A;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--gray-900);
+    background: #FFFFFF;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+
+  .container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ============================
+     HEADER
+     ============================ */
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: saturate(180%) blur(16px);
+    -webkit-backdrop-filter: saturate(180%) blur(16px);
+    border-bottom: 1px solid var(--gray-100);
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+
+  .nav__brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 900;
+    font-size: 22px;
+    color: var(--green-700);
+    letter-spacing: -0.5px;
+  }
+
+  .nav__brand-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(76, 175, 112, 0.35);
+    background: var(--green-50);
+    padding: 2px;
+  }
+
+  .nav__links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav__links a {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--gray-700);
+    transition: color 0.2s;
+  }
+
+  .nav__links a:hover { color: var(--green-500); }
+
+  .nav__cta {
+    padding: 10px 20px;
+    background: linear-gradient(135deg, var(--green-400), var(--green-600));
+    color: #fff !important;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 14px;
+    box-shadow: 0 4px 14px rgba(76, 175, 112, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .nav__cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(76, 175, 112, 0.5);
+  }
+
+  .nav__menu-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+  }
+
+  .nav__menu-btn svg {
+    width: 24px;
+    height: 24px;
+    stroke: var(--gray-700);
+  }
+
+  /* ============================
+     HERO
+     ============================ */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding: 72px 0 96px;
+    background:
+      radial-gradient(circle at 20% 20%, var(--green-50), transparent 45%),
+      radial-gradient(circle at 80% 80%, var(--amber-100), transparent 45%),
+      linear-gradient(180deg, #FFFFFF 0%, #FCFEFC 100%);
+  }
+
+  .hero__inner {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 64px;
+    align-items: center;
+  }
+
+  .hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: var(--green-50);
+    border: 1px solid var(--green-100);
+    color: var(--green-700);
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 800;
+    margin-bottom: 20px;
+  }
+
+  .hero__badge-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--green-500);
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(76, 175, 112, 0.2);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(76, 175, 112, 0.2); }
+    50%      { box-shadow: 0 0 0 8px rgba(76, 175, 112, 0.05); }
+  }
+
+  .hero__title {
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 900;
+    line-height: 1.05;
+    color: var(--brown-700);
+    letter-spacing: -1.2px;
+    margin-bottom: 20px;
+  }
+
+  .hero__title-accent {
+    background: linear-gradient(135deg, var(--green-500), var(--amber-500));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero__subtitle {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--gray-700);
+    margin-bottom: 32px;
+    max-width: 520px;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 24px;
+    border-radius: 14px;
+    font-weight: 800;
+    font-size: 15px;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s, background 0.2s;
+    border: none;
+    text-decoration: none;
+  }
+
+  .btn:active { transform: scale(0.98); }
+
+  .btn--primary {
+    background: linear-gradient(135deg, var(--green-400), var(--green-600));
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(76, 175, 112, 0.4);
+  }
+
+  .btn--primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(76, 175, 112, 0.5);
+  }
+
+  .btn--secondary {
+    background: #fff;
+    color: var(--brown-700);
+    border: 2px solid var(--brown-100);
+  }
+
+  .btn--secondary:hover {
+    background: var(--gray-50);
+    border-color: var(--brown-300);
+  }
+
+  .btn__icon { width: 22px; height: 22px; }
+
+  .hero__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gray-500);
+  }
+
+  .hero__meta-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .hero__meta-item::before {
+    content: '✓';
+    color: var(--green-500);
+    font-weight: 900;
+  }
+
+  /* Phone mockup */
+  .hero__visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .phone {
+    position: relative;
+    width: 280px;
+    height: 570px;
+    background: #1A1A2E;
+    border-radius: 40px;
+    padding: 12px;
+    box-shadow:
+      0 30px 60px -12px rgba(0, 0, 0, 0.35),
+      0 18px 36px -18px rgba(0, 0, 0, 0.3),
+      inset 0 0 0 2px rgba(255, 255, 255, 0.06);
+    z-index: 2;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-12px); }
+  }
+
+  .phone__screen {
+    width: 100%;
+    height: 100%;
+    border-radius: 32px;
+    overflow: hidden;
+    background: linear-gradient(160deg, #B3E5FC 0%, #E8F5E9 40%, #C8E6C9 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 16px 24px;
+    position: relative;
+  }
+
+  .phone__notch {
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 22px;
+    background: #1A1A2E;
+    border-radius: 999px;
+  }
+
+  .phone__stats {
+    display: flex;
+    gap: 8px;
+    align-self: stretch;
+    margin-bottom: 20px;
+  }
+
+  .phone__stat {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 8px 6px;
+    text-align: center;
+    font-size: 9px;
+    font-weight: 800;
+    color: var(--brown-700);
+    line-height: 1.2;
+  }
+
+  .phone__stat-emoji { font-size: 16px; display: block; margin-bottom: 2px; }
+
+  .phone__pet {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #FFF, #C8E6C9 55%, #66BB6A);
+    box-shadow:
+      0 12px 28px rgba(76, 175, 112, 0.45),
+      inset 0 -8px 16px rgba(0, 0, 0, 0.08),
+      inset 0 4px 12px rgba(255, 255, 255, 0.9);
+    display: grid;
+    place-items: center;
+    font-size: 72px;
+    margin: 8px 0 20px;
+    animation: bob 3s ease-in-out infinite;
+  }
+
+  @keyframes bob {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50%      { transform: translateY(-6px) rotate(2deg); }
+  }
+
+  .phone__bubble {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 14px;
+    padding: 10px 14px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--green-700);
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 16px;
+    max-width: 90%;
+  }
+
+  .phone__bar {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    height: 8px;
+    border-radius: 999px;
+    overflow: hidden;
+    margin-top: auto;
+    margin-bottom: 8px;
+  }
+
+  .phone__bar-fill {
+    width: 65%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--green-400), var(--green-600));
+    border-radius: 999px;
+    animation: fill 4s ease-in-out infinite alternate;
+  }
+
+  @keyframes fill {
+    0%   { width: 40%; }
+    100% { width: 85%; }
+  }
+
+  .phone__label {
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--brown-700);
+  }
+
+  /* Floating decorations */
+  .float-deco {
+    position: absolute;
+    font-size: 32px;
+    opacity: 0.7;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .float-deco--1 { top: 8%;  left: 6%;   animation: float 5s   ease-in-out infinite; }
+  .float-deco--2 { top: 70%; left: 2%;   animation: float 7s   ease-in-out infinite 0.5s; }
+  .float-deco--3 { top: 20%; right: 4%;  animation: float 6s   ease-in-out infinite 1s; }
+  .float-deco--4 { top: 80%; right: 8%;  animation: float 8s   ease-in-out infinite 0.3s; }
+
+  /* ============================
+     FEATURES
+     ============================ */
+  .section {
+    padding: 96px 0;
+  }
+
+  .section--alt {
+    background: var(--gray-50);
+  }
+
+  .section__header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+
+  .section__eyebrow {
+    display: inline-block;
+    padding: 6px 14px;
+    background: var(--green-50);
+    color: var(--green-700);
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .section__title {
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 900;
+    color: var(--brown-700);
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+  }
+
+  .section__subtitle {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--gray-500);
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+  }
+
+  .feature {
+    background: #fff;
+    border: 1.5px solid var(--gray-100);
+    border-radius: 22px;
+    padding: 28px;
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+  }
+
+  .feature:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px rgba(76, 175, 112, 0.15);
+    border-color: var(--green-100);
+  }
+
+  .feature__icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    display: grid;
+    place-items: center;
+    font-size: 28px;
+    margin-bottom: 18px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  }
+
+  .feature__icon--green  { background: linear-gradient(135deg, #C8E6C9, #66BB6A); }
+  .feature__icon--amber  { background: linear-gradient(135deg, #FFE0B2, #FF9800); }
+  .feature__icon--blue   { background: linear-gradient(135deg, #BBDEFB, #2196F3); }
+  .feature__icon--purple { background: linear-gradient(135deg, #E1BEE7, #9C27B0); }
+  .feature__icon--pink   { background: linear-gradient(135deg, #F8BBD0, #E91E63); }
+  .feature__icon--teal   { background: linear-gradient(135deg, #B2DFDB, #009688); }
+
+  .feature__title {
+    font-size: 19px;
+    font-weight: 900;
+    color: var(--brown-700);
+    margin-bottom: 8px;
+  }
+
+  .feature__desc {
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--gray-700);
+    line-height: 1.6;
+  }
+
+  /* ============================
+     PETS SHOWCASE
+     ============================ */
+  .pets {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+  }
+
+  .pet-card {
+    background: #fff;
+    border-radius: 24px;
+    padding: 28px 20px;
+    text-align: center;
+    border: 2px solid var(--gray-100);
+    transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+  }
+
+  .pet-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  }
+
+  .pet-card:nth-child(1):hover { border-color: #8B4513; }
+  .pet-card:nth-child(2):hover { border-color: #8B6F47; }
+  .pet-card:nth-child(3):hover { border-color: #D4A373; }
+  .pet-card:nth-child(4):hover { border-color: #E0A400; }
+
+  .pet-card__emoji {
+    font-size: 68px;
+    line-height: 1;
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .pet-card__name {
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--brown-700);
+    margin-bottom: 4px;
+  }
+
+  .pet-card__tag {
+    font-size: 13px;
+    font-style: italic;
+    color: var(--gray-500);
+    font-weight: 700;
+  }
+
+  /* ============================
+     PARENT TRUST
+     ============================ */
+  .trust {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+
+  .trust__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .trust__item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .trust__check {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--green-400), var(--green-600));
+    color: #fff;
+    display: grid;
+    place-items: center;
+    font-weight: 900;
+    font-size: 16px;
+    box-shadow: 0 4px 10px rgba(76, 175, 112, 0.35);
+  }
+
+  .trust__text strong {
+    display: block;
+    font-size: 15.5px;
+    color: var(--brown-700);
+    margin-bottom: 3px;
+    font-weight: 900;
+  }
+
+  .trust__text span {
+    font-size: 14px;
+    color: var(--gray-700);
+    font-weight: 500;
+  }
+
+  .trust__panel {
+    background: linear-gradient(160deg, var(--green-50), var(--amber-100));
+    border-radius: 28px;
+    padding: 40px;
+    text-align: center;
+    border: 2px solid #fff;
+    box-shadow: 0 20px 50px rgba(76, 175, 112, 0.2);
+  }
+
+  .trust__panel-emoji {
+    font-size: 72px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .trust__panel-title {
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--brown-700);
+    margin-bottom: 8px;
+  }
+
+  .trust__panel-sub {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gray-700);
+    margin-bottom: 24px;
+  }
+
+  /* ============================
+     DOWNLOAD CTA
+     ============================ */
+  .download {
+    background:
+      radial-gradient(circle at 10% 20%, rgba(255,255,255,0.15), transparent 45%),
+      radial-gradient(circle at 90% 80%, rgba(255,255,255,0.12), transparent 45%),
+      linear-gradient(135deg, var(--green-600), var(--green-400));
+    border-radius: 32px;
+    padding: 72px 40px;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(76, 175, 112, 0.35);
+  }
+
+  .download__title {
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 900;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .download__subtitle {
+    font-size: 17px;
+    font-weight: 600;
+    opacity: 0.95;
+    max-width: 560px;
+    margin: 0 auto 36px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .download__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .store-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 28px;
+    background: #1A1A2E;
+    color: #fff;
+    border-radius: 14px;
+    min-width: 260px;
+    justify-content: center;
+    transition: transform 0.15s, box-shadow 0.15s, background 0.2s;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+  }
+
+  .store-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.35);
+    background: #000;
+  }
+
+  .store-btn__icon { width: 32px; height: 32px; flex-shrink: 0; }
+
+  .store-btn__text {
+    text-align: left;
+    line-height: 1.15;
+  }
+
+  .store-btn__text small {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    opacity: 0.85;
+    letter-spacing: 0.3px;
+  }
+
+  .store-btn__text strong {
+    display: block;
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: -0.2px;
+  }
+
+  .download__small {
+    margin-top: 28px;
+    font-size: 13px;
+    font-weight: 700;
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── Install instructions box ── */
+  .install-info {
+    max-width: 560px;
+    margin: 32px auto 0;
+    padding: 20px 24px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    text-align: left;
+    position: relative;
+    z-index: 1;
+  }
+
+  .install-info__title {
+    font-size: 13px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.9;
+    margin-bottom: 10px;
+  }
+
+  .install-info ol {
+    padding-left: 20px;
+    font-size: 13.5px;
+    font-weight: 600;
+    line-height: 1.7;
+    opacity: 0.95;
+  }
+
+  .install-info li { margin-bottom: 4px; }
+
+  /* ============================
+     FAQ
+     ============================ */
+  .faq {
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  .faq__item {
+    background: #fff;
+    border: 1.5px solid var(--gray-100);
+    border-radius: 18px;
+    margin-bottom: 14px;
+    overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .faq__item[open] {
+    border-color: var(--green-200);
+    box-shadow: 0 8px 24px rgba(76, 175, 112, 0.1);
+  }
+
+  .faq__q {
+    cursor: pointer;
+    padding: 20px 24px;
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--brown-700);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .faq__q::-webkit-details-marker { display: none; }
+
+  .faq__q::after {
+    content: '+';
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--green-500);
+    flex-shrink: 0;
+    transition: transform 0.25s;
+  }
+
+  .faq__item[open] .faq__q::after {
+    transform: rotate(45deg);
+  }
+
+  .faq__a {
+    padding: 0 24px 22px;
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--gray-700);
+    line-height: 1.65;
+  }
+
+  /* ============================
+     FOOTER
+     ============================ */
+  .footer {
+    background: var(--brown-700);
+    color: #fff;
+    padding: 56px 0 32px;
+  }
+
+  .footer__grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+
+  .footer__brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 22px;
+    font-weight: 900;
+    margin-bottom: 12px;
+  }
+
+  .footer__brand-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+  }
+
+  .footer__tagline {
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0.75;
+    max-width: 300px;
+    line-height: 1.6;
+  }
+
+  .footer__heading {
+    font-size: 13px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--green-200);
+    margin-bottom: 16px;
+  }
+
+  .footer__links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer__links a {
+    font-size: 14px;
+    font-weight: 600;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+  }
+
+  .footer__links a:hover { opacity: 1; }
+
+  .footer__bottom {
+    padding-top: 28px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 16px;
+    font-size: 13px;
+    font-weight: 600;
+    opacity: 0.7;
+  }
+
+  /* ============================
+     RESPONSIVE
+     ============================ */
+  @media (max-width: 900px) {
+    .hero__inner,
+    .trust {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+
+    .hero__visual { order: -1; }
+
+    .phone { width: 240px; height: 490px; }
+    .phone__pet { width: 110px; height: 110px; font-size: 56px; }
+
+    .footer__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .nav__links { display: none; }
+
+    .nav__menu-btn { display: block; }
+
+    .section { padding: 72px 0; }
+
+    .download { padding: 56px 24px; border-radius: 24px; }
+
+    .store-btn { min-width: 100%; }
+
+    .footer__grid { grid-template-columns: 1fr; }
+
+    .footer__bottom { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================
+     HEADER
+     ============================ -->
+<header class="header">
+  <div class="container">
+    <nav class="nav">
+      <a href="#" class="nav__brand">
+        <img src="app_icon.png" alt="PAWgress" class="nav__brand-img" />
+        PAWgress
+      </a>
+
+      <ul class="nav__links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#pets">Mga Alaga</a></li>
+        <li><a href="#parents">Para sa Magulang</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#download" class="nav__cta">I-download</a></li>
+      </ul>
+
+      <button class="nav__menu-btn" aria-label="Menu">
+        <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<!-- ============================
+     HERO
+     ============================ -->
+<section class="hero">
+  <div class="container hero__inner">
+    <div class="hero__text">
+      <span class="hero__badge">
+        <span class="hero__badge-dot"></span>
+        Libreng Pag-download
+      </span>
+
+      <h1 class="hero__title">
+        Alagaan ang alaga.<br>
+        <span class="hero__title-accent">Alagaan ang sarili.</span>
+      </h1>
+
+      <p class="hero__subtitle">
+        Ang PAWgress ay isang masaya at ligtas na health app para sa mga batang edad 5–9.
+        Bumuo ng healthy habits habang inaalagaan ang iyong virtual pet — kalabaw, tarsier, aso, o agila!
+      </p>
+
+      <div class="hero__actions">
+        <a href="#download" class="btn btn--primary">
+          <svg class="btn__icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 16l-6-6h4V4h4v6h4l-6 6zm-8 2h16v2H4v-2z"/>
+          </svg>
+          I-download ngayon
+        </a>
+        <a href="#features" class="btn btn--secondary">
+          Alamin ang higit pa →
+        </a>
+      </div>
+
+      <div class="hero__meta">
+        <span class="hero__meta-item">100% Local — walang cloud</span>
+        <span class="hero__meta-item">Walang ads</span>
+        <span class="hero__meta-item">Libre magpakailanman</span>
+      </div>
+    </div>
+
+    <div class="hero__visual">
+      <span class="float-deco float-deco--1">⭐</span>
+      <span class="float-deco float-deco--2">💚</span>
+      <span class="float-deco float-deco--3">✨</span>
+      <span class="float-deco float-deco--4">🎉</span>
+
+      <div class="phone">
+        <div class="phone__screen">
+          <div class="phone__notch"></div>
+
+          <div class="phone__stats">
+            <div class="phone__stat">
+              <span class="phone__stat-emoji">🚶</span>
+              4.2k
+            </div>
+            <div class="phone__stat">
+              <span class="phone__stat-emoji">💧</span>
+              5/6
+            </div>
+            <div class="phone__stat">
+              <span class="phone__stat-emoji">🔥</span>
+              7
+            </div>
+          </div>
+
+          <div class="phone__pet">🐃</div>
+
+          <div class="phone__bubble">
+            Kumusta! Tara, maglakad tayo! 💚
+          </div>
+
+          <div class="phone__bar">
+            <div class="phone__bar-fill"></div>
+          </div>
+          <div class="phone__label">Araw-araw na layunin</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================
+     FEATURES
+     ============================ -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="section__header">
+      <span class="section__eyebrow">Mga Features</span>
+      <h2 class="section__title">Lahat ng kailangan para lumaking malusog</h2>
+      <p class="section__subtitle">
+        Dinisenyo kasama ng mga pediatrician, nutritionist, at child psychologist para sa mga batang Pilipino.
+      </p>
+    </div>
+
+    <div class="features">
+      <div class="feature">
+        <div class="feature__icon feature__icon--green">🥗</div>
+        <h3 class="feature__title">GO • GROW • GLOW</h3>
+        <p class="feature__desc">
+          Buuin ang masustansyang meal kasama ang iyong alaga. Matuto ng tama at balanseng pagkain sa masayang paraan.
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="feature__icon feature__icon--amber">🏃</div>
+        <h3 class="feature__title">Galaw para Lumakas</h3>
+        <p class="feature__desc">
+          Mga simpleng ehersisyo at laro na idinisenyo para sa edad 5–9. May safety guide at cooldown para sa kaligtasan.
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="feature__icon feature__icon--blue">💧</div>
+        <h3 class="feature__title">Hydration Tracking</h3>
+        <p class="feature__desc">
+          Awtomatikong naka-scale sa edad ang water target. May gentle reminders na hindi nakakagulat sa bata.
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="feature__icon feature__icon--purple">😴</div>
+        <h3 class="feature__title">Sleep Hygiene</h3>
+        <p class="feature__desc">
+          Bedtime routine, wind-down reminders, at morning light tracking — lahat ayon sa WHO guidelines.
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="feature__icon feature__icon--pink">🏆</div>
+        <h3 class="feature__title">Mga Badge at Gantimpala</h3>
+        <p class="feature__desc">
+          Soft-landing streaks, auto rest days, at walang pressure. Ang bata ay nag-e-enjoy, hindi nai-stress.
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="feature__icon feature__icon--teal">👨‍👩‍👧</div>
+        <h3 class="feature__title">Para sa Magulang</h3>
+        <p class="feature__desc">
+          Parent dashboard, health flags, at DOH Health Hotline. Ligtas at may gabay ang paglaki.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================
+     PETS
+     ============================ -->
+<section class="section section--alt" id="pets">
+  <div class="container">
+    <div class="section__header">
+      <span class="section__eyebrow">Mga Alaga</span>
+      <h2 class="section__title">Pumili ng iyong kasama</h2>
+      <p class="section__subtitle">
+        Apat na natatanging alagang hayop. Bawat isa ay may sariling personalidad at boses.
+      </p>
+    </div>
+
+    <div class="pets">
+      <div class="pet-card">
+        <span class="pet-card__emoji">🐃</span>
+        <div class="pet-card__name">Kalabaw</div>
+        <div class="pet-card__tag">Matibay at masipag</div>
+      </div>
+
+      <div class="pet-card">
+        <span class="pet-card__emoji">🐒</span>
+        <div class="pet-card__name">Tarsier</div>
+        <div class="pet-card__tag">Maliit pero mabilis</div>
+      </div>
+
+      <div class="pet-card">
+        <span class="pet-card__emoji">🐶</span>
+        <div class="pet-card__name">Aso</div>
+        <div class="pet-card__tag">Tapat at masayahin</div>
+      </div>
+
+      <div class="pet-card">
+        <span class="pet-card__emoji">🦅</span>
+        <div class="pet-card__name">Agila</div>
+        <div class="pet-card__tag">Malaya at matapang</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================
+     PARENT TRUST
+     ============================ -->
+<section class="section" id="parents">
+  <div class="container trust">
+    <div>
+      <span class="section__eyebrow">Para sa Magulang</span>
+      <h2 class="section__title" style="text-align: left;">
+        Ligtas para sa inyong anak.
+      </h2>
+      <p class="section__subtitle" style="text-align: left; margin-bottom: 32px;">
+        Walang ads. Walang cloud. Walang tracking. Nakabase sa clinical guidelines.
+      </p>
+
+      <ul class="trust__list">
+        <li class="trust__item">
+          <span class="trust__check">✓</span>
+          <div class="trust__text">
+            <strong>100% Local Data</strong>
+            <span>Nananatili sa phone ang lahat ng health data. Walang ipinapadala kahit saan.</span>
+          </div>
+        </li>
+
+        <li class="trust__item">
+          <span class="trust__check">✓</span>
+          <div class="trust__text">
+            <strong>Walang Ads, Walang In-App Purchases</strong>
+            <span>Hindi kami nagbebenta ng atensyon ng inyong anak. Walang microtransactions.</span>
+          </div>
+        </li>
+
+        <li class="trust__item">
+          <span class="trust__check">✓</span>
+          <div class="trust__text">
+            <strong>Parent Dashboard</strong>
+            <span>Buod ng linggong aktibidad, health flags, at DOH hotline — lahat may 4-digit PIN.</span>
+          </div>
+        </li>
+
+        <li class="trust__item">
+          <span class="trust__check">✓</span>
+          <div class="trust__text">
+            <strong>Hindi Nakaka-stress ang Streaks</strong>
+            <span>Soft-landing, auto rest days, at walang midnight notifications. Bata muna, streaks pangalawa.</span>
+          </div>
+        </li>
+
+        <li class="trust__item">
+          <span class="trust__check">✓</span>
+          <div class="trust__text">
+            <strong>Walang Body-Image Issues</strong>
+            <span>Hindi ipinapakita ang timbang, BMI, o "obese" sa bata. Positive habit building lang.</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="trust__panel">
+      <span class="trust__panel-emoji">🩺</span>
+      <h3 class="trust__panel-title">Clinically Informed</h3>
+      <p class="trust__panel-sub">
+        Alinsunod sa WHO, AAP, at Philippine DOH guidelines para sa pediatric health.
+      </p>
+      <div class="hero__meta" style="justify-content: center; color: var(--brown-700);">
+        <span class="hero__meta-item" style="color: var(--brown-700);">Pediatrician-recommendable</span>
+        <span class="hero__meta-item" style="color: var(--brown-700);">Privacy-first</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================
+     DOWNLOAD
+     ============================ -->
+<section class="section" id="download">
+  <div class="container">
+    <div class="download">
+      <h2 class="download__title">Handa ka na bang magsimula?</h2>
+      <p class="download__subtitle">
+        I-download ang PAWgress APK ngayon at simulan ang paglalakbay ng iyong anak tungo sa healthy habits.
+      </p>
+
+      <div class="download__buttons">
+        <!-- ══════════════════════════════════════════════════════════
+             REPLACE the href below with your actual APK download URL
+             Example: https://your-domain.com/downloads/pawgress.apk
+             ══════════════════════════════════════════════════════════ -->
+        <a href="https://your-domain.com/pawgress.apk"
+           class="store-btn"
+           download
+           rel="noopener">
+          <svg class="store-btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          <div class="store-btn__text">
+            <small>I-DOWNLOAD ANG</small>
+            <strong>APK (Android)</strong>
+          </div>
+        </a>
+      </div>
+
+      <div class="install-info">
+        <div class="install-info__title">📱 Paano Mag-install</div>
+        <ol>
+          <li>I-tap ang <strong>"I-download ang APK"</strong> button sa itaas.</li>
+          <li>Buksan ang na-download na file mula sa iyong <strong>Downloads</strong> folder.</li>
+          <li>Kung may warning na <strong>"Install from unknown sources"</strong>, i-tap ang <strong>Settings</strong> at i-allow ito.</li>
+          <li>I-tap ang <strong>Install</strong> at hintayin matapos.</li>
+          <li>Buksan ang <strong>PAWgress</strong> at magsimula!</li>
+        </ol>
+      </div>
+
+      <p class="download__small">
+        📱 Android 5.0+ • Libre magpakailanman • Walang ads
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================
+     FAQ
+     ============================ -->
+<section class="section section--alt" id="faq">
+  <div class="container">
+    <div class="section__header">
+      <span class="section__eyebrow">FAQ</span>
+      <h2 class="section__title">Mga madalas itanong</h2>
+    </div>
+
+    <div class="faq">
+      <details class="faq__item">
+        <summary class="faq__q">Libre ba talaga ang PAWgress?</summary>
+        <div class="faq__a">
+          Oo, 100% libre. Walang ads, walang premium features, walang hidden payments. Ito ay regalo para sa mga batang Pilipino.
+        </div>
+      </details>
+
+      <details class="faq__item">
+        <summary class="faq__q">Paano ko i-install ang APK?</summary>
+        <div class="faq__a">
+          I-tap ang "I-download ang APK" button sa itaas. Pagkatapos ma-download, buksan ang file mula sa Downloads folder. Kung may warning na "Install from unknown sources", i-allow ito sa Settings, tapos i-tap ang Install.
+        </div>
+      </details>
+
+      <details class="faq__item">
+        <summary class="faq__q">Ligtas ba ang pag-install mula sa labas ng Play Store?</summary>
+        <div class="faq__a">
+          Oo, basta galing ito sa official PAWgress website. Ang aming APK ay 100% safe, walang ads, at walang malware. Hindi ka mag-a-allow ng kahit anong permission na hindi kailangan ng app.
+        </div>
+      </details>
+
+      <details class="faq__item">
+        <summary class="faq__q">Anong edad ang tamang gamitin ito?</summary>
+        <div class="faq__a">
+          Ang PAWgress ay dinisenyo para sa mga batang edad 5–9 taong gulang. Pero puwedeng gamitin ng kahit sinong batang gustong magsimula ng healthy habits.
+        </div>
+      </details>
+
+      <details class="faq__item">
+        <summary class="faq__q">May in-app purchases ba?</summary>
+        <div class="faq__a">
+          Wala. Kahit ang mga costume at reward sa loob ng app ay nakukuha sa paglalaro, hindi sa pera.
+        </div>
+      </details>
+
+      <details class="faq__item">
+        <summary class="faq__q">Nakaligtas ba ang data ng aking anak?</summary>
+        <div class="faq__a">
+          Oo. Lahat ng health data ay nananatili sa inyong phone. Walang ipinapadala sa amin o sa kahit kanino. Walang account na kailangan.
+        </div>
+      </details>
+
+      <details class="faq__item">
+        <summary class="faq__q">Kailangan ba ng internet connection?</summary>
+        <div class="faq__a">
+          Hindi. Gumagana ang PAWgress nang offline matapos i-download.
+        </div>
+      </details>
+
+      <details class="faq__item">
+        <summary class="faq__q">Paano kung may tanong ako tungkol sa kalusugan ng anak ko?</summary>
+        <div class="faq__a">
+          Ang app ay may DOH Health Hotline ((02) 8651-7800) sa Parent Dashboard, at may weekly summary na pwedeng i-copy para ipakita sa pediatrician.
+        </div>
+      </details>
+
+      <details class="faq__item">
+        <summary class="faq__q">May version ba para sa iOS?</summary>
+        <div class="faq__a">
+          Malapit na! Nasa development stage pa ang iOS version. Abangan.
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================
+     FOOTER
+     ============================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand">
+          <img src="app_icon.png" alt="PAWgress" class="footer__brand-img" />
+          PAWgress
+        </div>
+        <p class="footer__tagline">
+          Isang libreng health app para sa mga batang Pilipino. Bumuo ng healthy habits sa masayang paraan.
+        </p>
+      </div>
+
+      <div>
+        <div class="footer__heading">Produkto</div>
+        <ul class="footer__links">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#pets">Mga Alaga</a></li>
+          <li><a href="#parents">Para sa Magulang</a></li>
+          <li><a href="#download">I-download</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer__heading">Suporta</div>
+        <ul class="footer__links">
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="mailto:hello@pawgress.ph">hello@pawgress.ph</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Use</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer__heading">Sumunod</div>
+        <ul class="footer__links">
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">TikTok</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© 2026 PAWgress. Gawang Pinoy 🇵🇭</span>
+      <span>Para sa mga batang Pilipino, nang may pagmamahal.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── Smooth scroll for anchor links ──
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // ── Reveal on scroll ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.feature, .pet-card, .faq__item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
